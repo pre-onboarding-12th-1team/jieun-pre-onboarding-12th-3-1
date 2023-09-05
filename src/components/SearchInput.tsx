@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'hooks/toolkithook'
-import { setSearchResultBoxOpen } from 'redux/searchSlice'
+import { setRecentKeywordList, setSearchResultBoxOpen } from 'redux/searchSlice'
 import { twMerge } from 'tailwind-merge'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
@@ -26,26 +26,34 @@ const SearchInput = () => {
     dispatch(setSearchResultBoxOpen(false))
   }
 
+  const search = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch(setRecentKeywordList(keyword))
+  }
+
   return (
-    <div 
+    <form 
       tabIndex={giveDivElementFocusingEvent}
       onFocus={openSearchResultBox}
       onBlur={closeSearchResultBox}
+      onSubmit={search}
       className={twMerge(
         'flex rounded-full justify-between py-2 px-5 w-[30rem] bg-white gap-2',
-        isSearchResultBoxOpen && 'border-2 border-blue-600'
+        isSearchResultBoxOpen && 'border-2 border-blue-500'
       )}
     >
-      <input 
+      <input
         onChange={typeKeyword}
-        type='text'
         placeholder='질환명을 입력해주세요'
         className='text-neutral-500 text-lg font-semibold w-full' 
       />
-      <div className='bg-blue-300 p-2 rounded-full'>
-        <MagnifyingGlassIcon className='h-6 w-6' />
-      </div>
-    </div>
+      <button
+        type='submit' 
+        className='bg-blue-500 p-2 rounded-full'
+      >
+        <MagnifyingGlassIcon className='h-6 w-6 text-white' />
+      </button>
+    </form>
   )
 }
 
