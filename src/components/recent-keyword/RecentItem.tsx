@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
-const RecentKeywordItem = ({ item }: { item: string }) => {
+const RecentItem = ({ item }: { item: string }) => {
   return (
     <div className='flex items-center gap-2 text-lg'>
       <div>
@@ -13,4 +13,4 @@ const RecentKeywordItem = ({ item }: { item: string }) => {
   )
 }
 
-export default RecentKeywordItem
+export default RecentItem

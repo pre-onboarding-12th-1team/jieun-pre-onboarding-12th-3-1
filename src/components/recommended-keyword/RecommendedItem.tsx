@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { Sick } from 'types/Search'
 
-const RelatedKeywordItem = ({ item }: { item: Sick }) => {
+const RecommendedItem = ({ item }: { item: Sick }) => {
   return (
     <div className='flex items-center gap-2 text-lg'>
       <div>
@@ -14,4 +14,4 @@ const RelatedKeywordItem = ({ item }: { item: Sick }) => {
   )
 }
 
-export default RelatedKeywordItem
+export default RecommendedItem

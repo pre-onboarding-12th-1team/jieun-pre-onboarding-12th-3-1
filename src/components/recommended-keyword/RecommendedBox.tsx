@@ -1,8 +1,8 @@
-import RelatedKeywordItem from 'components/related-keyword/RelatedKeywordItem'
+import RecommendedItem from 'components/recommended-keyword/RecommendedItem'
 import { useAppSelector } from 'hooks/toolkithook'
 import { Sick } from 'types/Search'
 
-const RelatedKeywordBox = () => {  
+const RecommendedBox = () => {  
   const { relatedKeywordList } = useAppSelector((state) => state.search)
 
   const firstIndex = 0
@@ -15,7 +15,7 @@ const RelatedKeywordBox = () => {
         <p className='text-sm text-neutral-500'>연관검색어</p>
         <div className='mt-1'>
           {list.map((item: Sick, index) => (
-            <RelatedKeywordItem key={index} item={item} />
+            <RecommendedItem key={index} item={item} />
           ))}
         </div>
       </div>
@@ -23,4 +23,4 @@ const RelatedKeywordBox = () => {
   )
 }
 
-export default RelatedKeywordBox
+export default RecommendedBox

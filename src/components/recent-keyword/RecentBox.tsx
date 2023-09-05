@@ -1,8 +1,8 @@
-import RecentKeywordItem from 'components/recent-keyword/RecentKeywordItem'
-import TopSearchedItem from 'components/recent-keyword/RecommendKeywordItem'
+import RecentItem from 'components/recent-keyword/RecentItem'
+import TopSearchedItem from 'components/recent-keyword/TopSearchedItem'
 import { useAppSelector } from 'hooks/toolkithook'
 
-const RecentKeywordBox = () => {
+const RecentBox = () => {
   const { recentKeywordList } = useAppSelector((state) => state.search)
 
   return (
@@ -17,10 +17,11 @@ const RecentKeywordBox = () => {
             </p>
           }
           {recentKeywordList.map((item: string, index) => (
-            <RecentKeywordItem key={index} item={item} />
+            <RecentItem key={index} item={item} />
           ))}
         </div>
       </div>
+      <br />
       <div className='mt-2'>
         <p className='text-sm text-neutral-500'>인기검색어</p>
         <div className='mt-1 flex'>
@@ -33,4 +34,4 @@ const RecentKeywordBox = () => {
   )
 }
 
-export default RecentKeywordBox
+export default RecentBox

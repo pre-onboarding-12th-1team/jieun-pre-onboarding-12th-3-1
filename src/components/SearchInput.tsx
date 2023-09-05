@@ -49,7 +49,7 @@ const SearchInput = () => {
       <input
         onChange={typeKeyword}
         placeholder='질환명을 입력해주세요'
-        className='text-neutral-500 text-lg font-semibold w-full' 
+        className='text-neutral-500 text-lg font-semibold w-full px-2' 
       />
       <button
         type='submit' 

@@ -1,6 +1,6 @@
 import { useAppSelector } from 'hooks/toolkithook'
-import RelatedKeywordBox from 'components/related-keyword/RelatedKeywordBox'
-import RecentKeywordBox from 'components/recent-keyword/RecentKeywordBox'
+import RecentBox from 'components/recent-keyword/RecentBox'
+import RecommendedBox from 'components/recommended-keyword/RecommendedBox'
 
 const SearchResultBox = () => {
   const { relatedKeywordList } = useAppSelector((state) => state.search)
@@ -8,8 +8,8 @@ const SearchResultBox = () => {
   return (
     <div className='mt-3 w-[30rem]'>
       {relatedKeywordList.length === 0 
-        ? <RecentKeywordBox />
-        : <RelatedKeywordBox /> }
+        ? <RecentBox />
+        : <RecommendedBox /> }
     </div>
   )
 }
