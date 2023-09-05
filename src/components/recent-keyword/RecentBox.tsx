@@ -21,8 +21,7 @@ const RecentBox = () => {
           ))}
         </div>
       </div>
-      <br />
-      <div className='mt-2'>
+      <div className='mt-10'>
         <p className='text-sm text-neutral-500'>인기검색어</p>
         <div className='mt-1 flex'>
           {/* TODO: 인기검색어 */}
