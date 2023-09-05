@@ -7,7 +7,9 @@ const RelatedKeywordItem = ({ item }: { item: Sick }) => {
       <div>
         <MagnifyingGlassIcon className='h-4 w-4' />
       </div>
-      <div>{item.sickNm}</div>
+      <div className='whitespace-nowrap overflow-hidden text-ellipsis'>
+        {item.sickNm}
+      </div>
     </div>
   )
 }

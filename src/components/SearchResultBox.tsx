@@ -3,16 +3,14 @@ import RelatedKeywordBox from 'components/related-keyword/RelatedKeywordBox'
 import RecentKeywordBox from 'components/recent-keyword/RecentKeywordBox'
 
 const SearchResultBox = () => {
-  const { isSearchResultBoxOpen } = useAppSelector((state) => state.search)
+  const { relatedKeywordList } = useAppSelector((state) => state.search)
+  
   return (
-    <>
-    {isSearchResultBoxOpen && 
-      <div className='relative mt-3'>
-        <RelatedKeywordBox /> 
-        <RecentKeywordBox />
-      </div>
-    }
-    </>
+    <div className='mt-3 w-[30rem]'>
+      {relatedKeywordList.length === 0 
+        ? <RecentKeywordBox />
+        : <RelatedKeywordBox /> }
+    </div>
   )
 }
 

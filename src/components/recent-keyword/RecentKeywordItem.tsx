@@ -6,7 +6,9 @@ const RecentKeywordItem = ({ item }: { item: string }) => {
       <div>
         <MagnifyingGlassIcon className='h-4 w-4' />
       </div>
-      <div>{item}</div>
+      <div className='whitespace-nowrap overflow-hidden text-ellipsis'>
+        {item}
+      </div>
     </div>
   )
 }
