@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SearchState } from "../types/Search";
 
 const initialState: SearchState = {
-  isSearchBoxOpen: false
+  isSearchResultBoxOpen: false
 }
 
 const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setSearchBoxOpen: (state, action) => {
-      state.isSearchBoxOpen = action.payload
+    setSearchResultBoxOpen: (state, action) => {
+      state.isSearchResultBoxOpen = action.payload
     }
   }
 })
 
 export default searchSlice.reducer
 
-export const { setSearchBoxOpen } = searchSlice.actions
+export const { setSearchResultBoxOpen } = searchSlice.actions

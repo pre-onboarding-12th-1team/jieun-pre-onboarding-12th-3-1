@@ -1,3 +1,3 @@
 export type SearchState = {
-  isSearchBoxOpen: boolean
+  isSearchResultBoxOpen: boolean
 }
