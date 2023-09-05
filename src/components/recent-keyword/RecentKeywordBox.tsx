@@ -1,5 +1,5 @@
 import RecentKeywordItem from 'components/recent-keyword/RecentKeywordItem'
-import RecommendKeywordItem from 'components/recent-keyword/RecommendKeywordItem'
+import TopSearchedItem from 'components/recent-keyword/RecommendKeywordItem'
 import { useAppSelector } from 'hooks/toolkithook'
 
 const RecentKeywordBox = () => {
@@ -22,11 +22,11 @@ const RecentKeywordBox = () => {
         </div>
       </div>
       <div className='mt-2'>
-        <p className='text-sm text-neutral-500'>추천검색어</p>
+        <p className='text-sm text-neutral-500'>인기검색어</p>
         <div className='mt-1 flex'>
-          {/* TODO: 고정으로 지정한 추천검색어 뿌려주기 */}
-          <RecommendKeywordItem />
-          <RecommendKeywordItem />
+          {/* TODO: 인기검색어 */}
+          <TopSearchedItem />
+          <TopSearchedItem />
         </div>
       </div>
     </div>
