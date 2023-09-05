@@ -1,7 +1,6 @@
+import NotFound from 'pages/NotFound'
+import Search from 'pages/Search'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './App.css'
-import Search from './pages/Search'
-import NotFound from './pages/NotFound'
 
 function App() {
   const router = createBrowserRouter([

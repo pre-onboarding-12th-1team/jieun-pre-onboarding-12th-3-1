@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { SearchState } from "../types/Search";
+import { createSlice } from '@reduxjs/toolkit'
+import { SearchState } from 'types/Search'
 
 const initialState: SearchState = {
   isSearchResultBoxOpen: false

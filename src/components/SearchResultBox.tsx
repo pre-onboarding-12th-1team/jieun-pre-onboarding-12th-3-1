@@ -1,7 +1,7 @@
-import { useAppSelector } from "../hooks/toolkithook"
-import RecentKeyword from "./RecentKeyword"
-import RecommendKeyword from "./RecommendKeyword"
-import RelatedKeyword from "./RelatedKeyword"
+import { useAppSelector } from 'hooks/toolkithook'
+import RecentKeyword from 'components/RecentKeyword'
+import RecommendKeyword from 'components/RecommendKeyword'
+import RelatedKeyword from 'components/RelatedKeyword'
 
 const SearchResultBox = () => {
   const { isSearchResultBoxOpen } = useAppSelector((state) => state.search)
