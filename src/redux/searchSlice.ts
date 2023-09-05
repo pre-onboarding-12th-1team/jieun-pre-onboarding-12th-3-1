@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import  useLocalCaching  from 'hooks/useLocalCaching'
 import { SearchState } from 'types/Search'
 
 const initialState: SearchState = {
   isSearchResultBoxOpen: false,
   recentKeywordList: [],
-  relatedKeywordList: []
+  recommendedKeywordList: []
 }
 
 const searchSlice = createSlice({
@@ -16,13 +17,16 @@ const searchSlice = createSlice({
     },
     setRecentKeywordList: (state, action) => {
       state.recentKeywordList = [...state.recentKeywordList, action.payload]
+      useLocalCaching()
     },
-    setRelatedKeywordList: (state, action) => {
-      state.relatedKeywordList = action.payload
+    setrecommendedKeywordList: (state, action) => {
+      state.recommendedKeywordList = action.payload
     },
   }
 })
 
 export default searchSlice.reducer
 
-export const { setSearchResultBoxOpen, setRecentKeywordList, setRelatedKeywordList } = searchSlice.actions
+export const { 
+  setSearchResultBoxOpen, setRecentKeywordList, setrecommendedKeywordList 
+} = searchSlice.actions

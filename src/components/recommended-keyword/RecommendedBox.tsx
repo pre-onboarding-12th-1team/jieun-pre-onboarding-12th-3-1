@@ -3,11 +3,11 @@ import { useAppSelector } from 'hooks/toolkithook'
 import { Sick } from 'types/Search'
 
 const RecommendedBox = () => {  
-  const { relatedKeywordList } = useAppSelector((state) => state.search)
+  const { recommendedKeywordList } = useAppSelector((state) => state.search)
 
   const firstIndex = 0
   const maxCount = 7
-  const list = relatedKeywordList.slice(firstIndex, maxCount)
+  const list = recommendedKeywordList.slice(firstIndex, maxCount)
 
   return (
     <div className='rounded-2xl py-2 px-5 bg-white w-full h-auto'>

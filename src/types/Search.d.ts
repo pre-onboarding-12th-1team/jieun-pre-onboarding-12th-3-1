@@ -6,5 +6,5 @@ export interface Sick {
 export type SearchState = {
   isSearchResultBoxOpen: boolean
   recentKeywordList: string[]
-  relatedKeywordList: Sick[]
+  recommendedKeywordList: Sick[]
 }

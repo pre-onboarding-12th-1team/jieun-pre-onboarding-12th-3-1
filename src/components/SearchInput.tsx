@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from 'hooks/toolkithook'
-import { setRecentKeywordList, setRelatedKeywordList, setSearchResultBoxOpen } from 'redux/searchSlice'
+import { setRecentKeywordList, setrecommendedKeywordList, setSearchResultBoxOpen } from 'redux/searchSlice'
 import { twMerge } from 'tailwind-merge'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { getSick } from 'apis/search'
@@ -16,7 +16,7 @@ const SearchInput = () => {
   const typeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value)
     getSick(e.currentTarget.value).then(
-      (result) => dispatch(setRelatedKeywordList(result))
+      (result) => dispatch(setrecommendedKeywordList(result))
     )
   }
 
