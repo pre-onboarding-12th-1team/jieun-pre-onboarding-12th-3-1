@@ -3,7 +3,8 @@ import { SearchState } from 'types/Search'
 
 const initialState: SearchState = {
   isSearchResultBoxOpen: false,
-  recentKeywordList: []
+  recentKeywordList: [],
+  relatedKeywordList: []
 }
 
 const searchSlice = createSlice({
@@ -14,12 +15,14 @@ const searchSlice = createSlice({
       state.isSearchResultBoxOpen = action.payload
     },
     setRecentKeywordList: (state, action) => {
-      console.log(action.payload)
       state.recentKeywordList = [...state.recentKeywordList, action.payload]
+    },
+    setRelatedKeywordList: (state, action) => {
+      state.relatedKeywordList = action.payload
     },
   }
 })
 
 export default searchSlice.reducer
 
-export const { setSearchResultBoxOpen, setRecentKeywordList } = searchSlice.actions
+export const { setSearchResultBoxOpen, setRecentKeywordList, setRelatedKeywordList } = searchSlice.actions
