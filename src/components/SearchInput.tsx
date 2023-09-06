@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { getSick } from 'apis/search'
 import { useAppDispatch, useAppSelector } from 'hooks/toolkithook'
+import { useState } from 'react'
 import {
   setKeyword, setRecentKeywordList, setRecommendedKeywordList, setSearchResultBoxOpen,
   setSelectedIndex
@@ -8,44 +9,47 @@ import {
 import { twMerge } from 'tailwind-merge'
 
 const SearchInput = () => {
+  //const giveDivElementFocusingEvent = -1
+  const [inputKeyword, setInputKeyword] = useState('')
   const dispatch = useAppDispatch()
-  const { isSearchResultBoxOpen, selectedIndex, recommendedKeywordList } 
-    = useAppSelector((state) => state.search)
+  const { 
+    keyword, isSearchResultBoxOpen, selectedIndex, 
+    recommendedKeywordList, recentKeywordList } = useAppSelector((state) => state.search)
   
+
+  const openSearchResultBox = () => {
+    dispatch(setSearchResultBoxOpen(true))
+  }
+  const closeSearchResultBox = () => {
+    dispatch(setSearchResultBoxOpen(false))
+  }
+
+  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'ArrowDown') {
+      dispatch(setSelectedIndex(
+        Math.min(selectedIndex + 1, recommendedKeywordList.length - 1)
+      ))
+    }
+    if(e.key === 'ArrowUp') {
+      dispatch(setSelectedIndex(
+        Math.max(0, selectedIndex - 1)
+      ))
+    }
+}
+
   const typeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputKeyword(e.currentTarget.value)
     dispatch(setKeyword(e.currentTarget.value))
     getSick(e.currentTarget.value).then(
       (result) => dispatch(setRecommendedKeywordList(result))
     )
   }
 
-  const openSearchResultBox = () => {
-    dispatch(setSearchResultBoxOpen(true))
-  }
-
-  const closeSearchResultBox = () => {
-    dispatch(setSearchResultBoxOpen(false))
-  }
-
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(setRecentKeywordList(e.currentTarget.value))
-  }
-
-  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if(e.key === 'ArrowDown') {
-        dispatch(setSelectedIndex(
-          Math.min(selectedIndex + 1, recommendedKeywordList.length - 1)
-        ))
-      }
-      if(e.key === 'ArrowUp') {
-        dispatch(setSelectedIndex(
-          Math.max(0, selectedIndex - 1)
-        ))
-      }
-      if(e.key === 'Enter') {
-        
-      }
+    dispatch(setRecentKeywordList(inputKeyword))
+    setInputKeyword('')
+    dispatch(setKeyword(''))
   }
   
   return (
@@ -60,7 +64,7 @@ const SearchInput = () => {
       )}
     >
       <input
-        //value={keyword} 여기 이거 왜 없어도 잘 동작하는거지
+        value={inputKeyword} 
         onChange={typeKeyword}
         onKeyDown={keyPress}
         placeholder='질환명을 입력해주세요'
