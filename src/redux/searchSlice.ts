@@ -5,7 +5,8 @@ const initialState: SearchState = {
   keyword: '',
   isSearchResultBoxOpen: false,
   recentKeywordList: [],
-  recommendedKeywordList: []
+  recommendedKeywordList: [],
+  selectedIndex: -1
 }
 
 const searchSlice = createSlice({
@@ -22,8 +23,11 @@ const searchSlice = createSlice({
       state.recentKeywordList = [...state.recentKeywordList, action.payload]
       //TODO: 로컬캐싱을 여기서 해야할까
     },
-    setrecommendedKeywordList: (state, action) => {
+    setRecommendedKeywordList: (state, action) => {
       state.recommendedKeywordList = action.payload
+    },
+    setSelectedIndex: (state, action) => {
+      state.selectedIndex = action.payload
     },
   }
 })
@@ -31,5 +35,6 @@ const searchSlice = createSlice({
 export default searchSlice.reducer
 
 export const { 
-  setKeyword, setSearchResultBoxOpen, setRecentKeywordList, setrecommendedKeywordList 
+  setKeyword, setSearchResultBoxOpen, setRecentKeywordList, 
+  setRecommendedKeywordList, setSelectedIndex
 } = searchSlice.actions

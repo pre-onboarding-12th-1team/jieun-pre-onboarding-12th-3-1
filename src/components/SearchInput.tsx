@@ -1,19 +1,21 @@
-import { useAppDispatch, useAppSelector } from 'hooks/toolkithook'
-import { setKeyword, setRecentKeywordList, setrecommendedKeywordList, setSearchResultBoxOpen } from 'redux/searchSlice'
-import { twMerge } from 'tailwind-merge'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { getSick } from 'apis/search'
+import { useAppDispatch, useAppSelector } from 'hooks/toolkithook'
+import {
+  setKeyword, setRecentKeywordList, setRecommendedKeywordList, setSearchResultBoxOpen,
+  setSelectedIndex
+} from 'redux/searchSlice'
+import { twMerge } from 'tailwind-merge'
 
 const SearchInput = () => {
-  const giveDivElementFocusingEvent = -1
-
   const dispatch = useAppDispatch()
-  const { isSearchResultBoxOpen } = useAppSelector((state) => state.search)
+  const { isSearchResultBoxOpen, selectedIndex, recommendedKeywordList } 
+    = useAppSelector((state) => state.search)
   
   const typeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(e.currentTarget.value))
     getSick(e.currentTarget.value).then(
-      (result) => dispatch(setrecommendedKeywordList(result))
+      (result) => dispatch(setRecommendedKeywordList(result))
     )
   }
 
@@ -30,9 +32,25 @@ const SearchInput = () => {
     dispatch(setRecentKeywordList(e.currentTarget.value))
   }
 
+  const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if(e.key === 'ArrowDown') {
+        dispatch(setSelectedIndex(
+          Math.min(selectedIndex + 1, recommendedKeywordList.length - 1)
+        ))
+      }
+      if(e.key === 'ArrowUp') {
+        dispatch(setSelectedIndex(
+          Math.max(0, selectedIndex - 1)
+        ))
+      }
+      if(e.key === 'Enter') {
+        
+      }
+  }
+  
   return (
     <form 
-      tabIndex={giveDivElementFocusingEvent}
+      //tabIndex={giveDivElementFocusingEvent}
       onFocus={openSearchResultBox}
       onBlur={closeSearchResultBox}
       onSubmit={search}
@@ -44,6 +62,7 @@ const SearchInput = () => {
       <input
         //value={keyword} 여기 이거 왜 없어도 잘 동작하는거지
         onChange={typeKeyword}
+        onKeyDown={keyPress}
         placeholder='질환명을 입력해주세요'
         className='text-neutral-500 text-lg font-semibold w-full px-2' 
       />

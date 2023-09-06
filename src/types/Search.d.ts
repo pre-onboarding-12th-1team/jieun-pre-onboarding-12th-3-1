@@ -8,4 +8,5 @@ export type SearchState = {
   isSearchResultBoxOpen: boolean
   recentKeywordList: string[]
   recommendedKeywordList: Sick[]
+  selectedIndex: number
 }
