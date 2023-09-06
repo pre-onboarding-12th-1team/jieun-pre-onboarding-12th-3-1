@@ -4,8 +4,9 @@ import { twMerge } from 'tailwind-merge'
 import { Sick } from 'types/Search'
 
 const RecommendedItem = ({ index, item }: { index: number, item: Sick }) => {
-  const { selectedIndex } = useAppSelector((state) => state.search)
-
+  const { keyword, selectedIndex } = useAppSelector((state) => state.search)
+  const matchText = item.sickNm.split(new RegExp(`(${keyword})`, 'gi'));
+  
   return (
     <div className={twMerge(
       'flex items-center gap-2 text-lg mb-1',
@@ -15,8 +16,13 @@ const RecommendedItem = ({ index, item }: { index: number, item: Sick }) => {
         <MagnifyingGlassIcon className='h-4 w-4' />
       </div>
       <div className='whitespace-nowrap overflow-hidden text-ellipsis'>
-        {item.sickNm}
+      {matchText.map((text: string, index: number) =>
+        text.toLowerCase() === keyword.toLowerCase()
+        ? <span key={index} className='bg-blue-200'>{text}</span>
+        : text
+      )}
       </div>
+      
     </div>
     
   )
